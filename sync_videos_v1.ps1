@@ -358,9 +358,13 @@ function Sync-Playlist {
         New-Item -Path $ytTempDir -ItemType Directory -Force | Out-Null
     }
 
-    # Format selector: best video+audio under height cap, preferring mp4.
-    # Falls back to any best single file if the split streams aren't available.
-    $formatSpec = "bv*[height<=?$MAX_VIDEO_HEIGHT]+ba/b[height<=?$MAX_VIDEO_HEIGHT]/bv*+ba/b"
+    # Format selector: prefer H.264 (avc1) video + AAC (m4a) audio for max
+    # compatibility — these play on Sonos, Windows Media Player, smart TVs,
+    # browsers, everything. Without this constraint yt-dlp may pick AV1 video
+    # + Opus audio which is technically smaller but won't play in many places.
+    # Falls back through progressively looser options if the canonical combo
+    # isn't available at the requested resolution.
+    $formatSpec = "bv*[ext=mp4][vcodec^=avc1][height<=?$MAX_VIDEO_HEIGHT]+ba[ext=m4a]/b[ext=mp4][height<=?$MAX_VIDEO_HEIGHT]/bv*[height<=?$MAX_VIDEO_HEIGHT]+ba[ext=m4a]/bv*[height<=?$MAX_VIDEO_HEIGHT]+ba/b[height<=?$MAX_VIDEO_HEIGHT]/b"
 
     $ytArgs = @(
         "--format", $formatSpec,
