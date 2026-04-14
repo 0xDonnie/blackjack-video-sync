@@ -50,11 +50,11 @@ Open `video_config.ps1` and fill in:
 
 **3. Launch the GUI**
 
-Double-click **`blackjack-video-sync.vbs`** and the GUI opens with no console window.
+Double-click **`blackjack-video-sync.cmd`** and the GUI opens. You'll see a brief flash of a console window, then the dark-theme GUI appears.
 
 Alternative from terminal:
 ```powershell
-pwsh video_gui_v1.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File video_gui_v1.ps1
 ```
 
 ---
