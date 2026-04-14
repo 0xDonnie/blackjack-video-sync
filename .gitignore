@@ -1,0 +1,28 @@
+# Private user config — never commit
+video_config.ps1
+
+# Cookies (contain login sessions)
+cookies.txt
+*cookies*.txt
+
+# Files generated in playlist folders on disk
+.archive
+_id_map.txt
+_unavailable.txt
+*.m3u
+video_sync.log
+
+# GUI temp files
+_temp_video_sync_config.ps1
+_temp_video_sync_stdout.log
+_temp_video_sync_stderr.log
+
+# Update-check state
+_v3_video_pending.json
+
+# yt-dlp leftovers
+*.webm
+*.webp
+*.part
+*.part.mp4
+*.temp.mp4
