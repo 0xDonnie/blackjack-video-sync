@@ -1,6 +1,9 @@
 # Private user config — never commit
 video_config.ps1
 
+# Stray "saved URL as filename" text files (browser/clipboard accidents)
+https*.txt
+
 # Cookies (contain login sessions)
 cookies.txt
 *cookies*.txt
